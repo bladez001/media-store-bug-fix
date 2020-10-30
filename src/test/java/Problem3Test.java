@@ -8,26 +8,32 @@ public class Problem3Test {
     public void catchTheBugInBook() {
         // quiz //Timothy Muresan
         BookFiction f = new BookFiction("t1", "au1", "g1");
-        BookFiction fc = new BookFiction(f);
-        f.setTitle("t2");
-        f.setAuthor("au2");
+        BookFiction fc = new BookFiction(f); //At this point id is the same
         assertTrue(f.equals(fc));
 
+        f.setTitle("t2");
+        f.setAuthor("au2"); //title and author of f changed, id remains same
+        assertTrue(f.equals(fc)); //The original equals method return statement fails here
+                                  //but the fix does not fail because id remains the same
+
         fc = new BookFiction("t2", "au2", "g1");
-        assertFalse(f.equals(fc));
+        assertFalse(f.equals(fc)); //passes because id is different
     }
 
     @Test
     public void catchTheBugInMovie() {
         // quiz
         MovieAction movie1 = new MovieAction("G", "Cars");
-        MovieAction movie2 = new MovieAction(movie1);
-        movie1.setRating("PG13");
-        movie1.setTitle("Inception");
+        MovieAction movie2 = new MovieAction(movie1); //At this point id is the same
         assertTrue(movie1.equals(movie2));
 
+        movie1.setRating("PG13");
+        movie1.setTitle("Inception"); //title and rating of movie1 changed, id remains same
+        assertTrue(movie1.equals(movie2)); //The original equals method return statement fails here
+                                           //but the fix does not fail because id remains the same
+
         movie2 = new MovieAction("PG13", "Inception");
-        assertFalse(movie1.equals(movie2));
+        assertFalse(movie1.equals(movie2)); //passes because id is different
     }
 
     // DO NOT REMOVE OR CHANGE ANYTHING BELOW THIS!
